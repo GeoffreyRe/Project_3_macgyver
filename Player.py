@@ -4,6 +4,7 @@ class Player(object):
 	def __init__(self,map_player):
 		self.position_player_index,self.position_player_px = map_player.find_player()
 		self.player_rect = pygame.Rect(self.position_player_px[0], self.position_player_px[1],56,45)
+		self.inventory = [] # on crée une liste qui contiendra des objets de classe item
 
 	def move_up(self,map_player):
 		previous_position = deepcopy(self.position_player_index)
