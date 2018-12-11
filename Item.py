@@ -11,4 +11,3 @@ class Item():
 
 	def go_to_inventory(self):
 		self.on_map = False
-

@@ -50,38 +50,25 @@ while launched:
 					if needle.on_map:
 						mac_gyver.retrieve_item(needle)
 						needle.go_to_inventory()
-						map_player.delete_item(ether)
+						map_player.delete_item(needle)
 						display.refresh(map_player)
-						print("l'objet va dans l'inventaire")
-						print(mac_gyver.inventory)
-
-					else:
-						print("l'objet est déjà dans l'inventaire")
 
 				if mac_gyver.player_rect.colliderect(ether.item_rect) :
-					print("les deux rect se touchent")
 					if ether.on_map:
 						mac_gyver.retrieve_item(ether)
 						ether.go_to_inventory()
 						map_player.delete_item(ether)
-						print(map_player.map_list)
 						display.refresh(map_player)
-						print("l'objet va dans l'inventaire")
-						
-
-					else:
-						print("l'objet est déjà dans l'inventaire")
 
 
 				if mac_gyver.player_rect.colliderect(tube.item_rect) :
-					print("les deux rect se touchent")
 					if tube.on_map:
 						mac_gyver.retrieve_item(tube)
 						tube.go_to_inventory()
 						map_player.delete_item(tube)
 						display.refresh(map_player)
-						print("l'objet va dans l'inventaire")
-						print(mac_gyver.inventory)
 
-					else:
-						print("l'objet est déjà dans l'inventaire")
+			elif event.key == pygame.K_a:
+				if mac_gyver.position_player_index == map_player.find_jailer():
+					if len(mac_gyver.inventory) == 3:
+						launched = False

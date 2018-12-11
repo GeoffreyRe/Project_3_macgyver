@@ -15,6 +15,13 @@ class Map(object):
 
 		return position_player_index, position_player_px
 
+	def find_jailer(self):
+		for index_line, line in enumerate(self.map_list):
+			for index_sprite, sprite in enumerate(line):
+				if sprite == 3:
+					position_jailer_index = [index_sprite - 1, index_line]
+		return position_jailer_index
+
 	def change_map(self,previous_position, new_position):
 		previous_position_y = previous_position[1]
 		previous_position_x = previous_position[0]
