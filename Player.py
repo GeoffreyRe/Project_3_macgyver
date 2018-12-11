@@ -48,5 +48,5 @@ class Player(object):
 			new_position = self.position_player_index
 			map_player.change_map(previous_position, new_position)
 
-		else:
-			print("You can not go to this position")
+	def retrieve_item(self, item):
+		self.inventory.append(item)

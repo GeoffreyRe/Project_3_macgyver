@@ -23,6 +23,9 @@ class Map(object):
 		self.map_list[previous_position_y][previous_position_x] = 0
 		self.map_list[new_position_y][new_position_x] = 2
 
+	def delete_item(self, item):
+		self.map_list[item.index_value[1]][item.index_value[0]] =0
+
 	def random_position(self):
 		accepted = False
 		while not accepted: 
@@ -32,15 +35,8 @@ class Map(object):
 				accepted = True
 		return (position_index_x, position_index_y)
 
-	def put_item_on_map(self):
-		position_object_1 = self.random_position()
-		self.map_list[position_object_1[1]][position_object_1[0]] = 4
-
-		position_object_2 = self.random_position()
-		self.map_list[position_object_2[1]][position_object_2[0]] = 5
-
-		position_object_3 = self.random_position()
-		self.map_list[position_object_3[1]][position_object_3[0]] = 6
+	def put_item_on_map(self, item):
+		self.map_list[item.index_value[1]][item.index_value[0]] = item.value
 
 
 
