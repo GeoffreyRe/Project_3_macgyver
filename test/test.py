@@ -1,3 +1,4 @@
+"""
 import pygame
 import time
 
@@ -106,6 +107,19 @@ while launched:
 
 
 			touche = event.key
+
+"""
+
+def fonction(a,b,c):
+	if a == 2:
+		print("a = 2")
+
+	else: 
+		print("coucou")
+
+
+fonction(2,2,3)
+
 
 
 

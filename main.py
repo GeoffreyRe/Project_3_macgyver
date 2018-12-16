@@ -2,6 +2,9 @@ from Display import *
 from Map import *
 from Player import *
 from Item import *
+from Game import *
+
+"""
 
 display = Display() 
 map_player = Map()
@@ -76,5 +79,16 @@ while launched:
 				if mac_gyver.position_player_index == map_player.find_jailer():
 					# check if the player has 3 items
 					if len(mac_gyver.inventory) == 3:
+						print("you win !")
 						launched = False # win the game !
+
+					else:
+						print("you died !")
+						launched = False
+
+"""
+
+game = Game()
+
+game.loop()
 
