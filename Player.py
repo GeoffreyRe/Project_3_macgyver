@@ -50,6 +50,8 @@ class Player(object):
 			self.player_rect.x += 56
 			new_position = self.position_player_index
 			map_player.change_map(previous_position, new_position)
+		else:
+			print("you can not go to this position")
 	# item add to the inventory of the player if the player retrieves it
 	def retrieve_item(self, item):
 		self.inventory.append(item)

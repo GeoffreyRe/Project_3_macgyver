@@ -36,33 +36,24 @@ class Display(object):
 		self.item_3 = pygame.image.load("ressource/tube_plastique1.png").convert_alpha()
 		self.item_3 = pygame.transform.scale(self.item_3, (56,45)).convert_alpha()
 	# method the class will use when something change on the map (the player moves, the player retrieves an item,... )
+
+	# method that "blit" a surface on another surface
+	def display_surfaces(self,first_surface,second_surface,position):
+		self.window_screen.blit(first_surface,position)
+		self.window_screen.blit(second_surface,position)
+
 	def refresh(self, map_player):
+		surfaces_list = [self.ground,self.wall,self.player_display,self.jailer,self.item_1,self.item_2,self.item_3] # list that contains all the surfaces the program needs
+		value_display = [0,1,2,3,4,5,6] # values in the map_list
 		self.window_screen.fill((0,0,0))
 		for index_line, line in enumerate(map_player.map_list):
 			for index_sprite, sprite in enumerate(line): # analysis of the map list
 				position_px = (index_sprite * 56,index_line * 45) # position in pixels
-				if sprite == 1: # 1 = wall
-					self.window_screen.blit(self.wall, position_px) # method that puts a surface on another surface
-
-				elif sprite == 0: # 0 = ground
-					self.window_screen.blit(self.ground, position_px)
-
-				elif sprite == 2: # 2 = player
-					self.window_screen.blit(self.ground, position_px)
-					self.window_screen.blit(self.player_display, position_px)
-
-				elif sprite == 3: # 3 = jailer
-					self.window_screen.blit(self.ground, position_px)
-					self.window_screen.blit(self.jailer, position_px)
-
-				elif sprite == 4: # 4 = needle
-					self.window_screen.blit(self.ground, position_px)
-					self.window_screen.blit(self.item_1, position_px)
-				elif sprite == 5: # 5 = ether 
-					self.window_screen.blit(self.ground, position_px)
-					self.window_screen.blit(self.item_2, position_px)
-				elif sprite == 6: #6 = tube
-					self.window_screen.blit(self.ground, position_px)
-					self.window_screen.blit(self.item_3, position_px)
+				for index_value, value in enumerate(value_display): 
+					if value == sprite:
+						self.display_surfaces(self.ground,surfaces_list[index_value],position_px)
 
 		pygame.display.flip() # method that updates display
+
+
+

@@ -5,6 +5,5 @@ from Item import *
 from Game import *
 
 game = Game()
-
 game.loop()
 

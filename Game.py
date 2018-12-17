@@ -65,7 +65,7 @@ class Game(object):
 					elif event.key == pygame.K_a:
 						launched = self.victory()
 						
-					else:
+					elif event.key in self.keyboard_list_movements:
 						self.press_keyboard_movement(event.key)
 
 
