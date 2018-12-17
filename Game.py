@@ -13,13 +13,14 @@ class Game(object):
 		self.tube = Item("tube",6,self.map_player)
 		self.map_player.put_item_on_map(self.tube)
 		self.mac_gyver = Player(self.map_player)
-		self.methods_display = [self.display.load_wall, self.display.load_ground,self.display.load_player_display,self.display.load_jailer,self.display.load_items]
 		self.display.load_wall()
 		self.display.load_ground()
 		self.display.load_player_display()
 		self.display.load_jailer()
 		self.display.load_items()
-		self.display.refresh(self.map_player)
+		self.display.load_font()
+		self.display.refresh(self.map_player,self.mac_gyver)
+		self.display.show_inventory(self.mac_gyver)
 		self.items_in_game = [self.needle,self.ether,self.tube]
 		self.keyboard_list_movements = [pygame.K_UP, pygame.K_DOWN,pygame.K_LEFT, pygame.K_RIGHT]
 		self.keyboard_functions = [self.mac_gyver.move_up, self.mac_gyver.move_down, self.mac_gyver.move_left, self.mac_gyver.move_right]
@@ -28,7 +29,7 @@ class Game(object):
 		for index, k in enumerate(self.keyboard_list_movements):
 			if k == keyboard_value:
 				self.keyboard_functions[index](self.map_player)
-				self.display.refresh(self.map_player)
+				self.display.refresh(self.map_player,self.mac_gyver)
 
 	def press_keyboard_items(self):
 		for item in self.items_in_game:
@@ -37,7 +38,7 @@ class Game(object):
 						self.mac_gyver.retrieve_item(item) # the player retrieve the item
 						item.go_to_inventory() #on_map = False
 						self.map_player.delete_item(item) # item disappears of the map_list
-						self.display.refresh(self.map_player) #update of the display
+						self.display.refresh(self.map_player,self.mac_gyver) #update of the display
 
 	def victory(self):
 		if self.mac_gyver.position_player_index == self.map_player.find_jailer():

@@ -7,6 +7,14 @@ class Display(object):
 		self.resolution = (840,675) #size of the window
 		self.window_screen = pygame.display.set_mode(self.resolution) # instantiation of a surface object 
 
+	def load_font(self):
+		self.arial_font = pygame.font.SysFont("arial",25, True , True)
+
+	def show_inventory(self,player):
+		self.inventory_text = self.arial_font.render("You have {} item(s) in your inventory".format(len(player.inventory)), False,(0,0,0)).convert_alpha()
+		self.window_screen.blit(self.inventory_text,(0,0))
+		pygame.display.flip()
+
 	def load_wall(self):
 		wall_sheet = pygame.image.load("ressource/structures.png") # we load the image and transform it into a surface object
 		self.wall = wall_sheet.subsurface(40,140,40,20) # we only want a part of the image
@@ -38,11 +46,11 @@ class Display(object):
 	# method the class will use when something change on the map (the player moves, the player retrieves an item,... )
 
 	# method that "blit" a surface on another surface
-	def display_surfaces(self,first_surface,second_surface,position):
+	def blit_surfaces(self,first_surface,second_surface,position):
 		self.window_screen.blit(first_surface,position)
 		self.window_screen.blit(second_surface,position)
 
-	def refresh(self, map_player):
+	def refresh(self, map_player, player):
 		surfaces_list = [self.ground,self.wall,self.player_display,self.jailer,self.item_1,self.item_2,self.item_3] # list that contains all the surfaces the program needs
 		value_display = [0,1,2,3,4,5,6] # values in the map_list
 		self.window_screen.fill((0,0,0))
@@ -51,7 +59,9 @@ class Display(object):
 				position_px = (index_sprite * 56,index_line * 45) # position in pixels
 				for index_value, value in enumerate(value_display): 
 					if value == sprite:
-						self.display_surfaces(self.ground,surfaces_list[index_value],position_px)
+						self.blit_surfaces(self.ground,surfaces_list[index_value],position_px)
+
+		self.show_inventory(player)
 
 		pygame.display.flip() # method that updates display
 
