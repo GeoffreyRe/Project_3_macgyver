@@ -4,7 +4,7 @@ import random
 # class that contains methods and attributes linked with the map list
 class Map(object):
 	def __init__(self):
-		with open("map.json") as f:
+		with open("ressource/map.json") as f:
 			self.map_list = json.load(f) #transform an json file into a python object
 	# method that find the index of the player
 	def find_player(self):
